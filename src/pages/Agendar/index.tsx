@@ -100,7 +100,7 @@ function RegistrarUsuario() {
         console.log(arrayDate)
         console.log(horaSeparada)
          
-        var horarioAgendado = new Date(parseInt(arrayDate[0]), parseInt(arrayDate[1]), parseInt(arrayDate[2]), parseInt(horaSeparada[0]), parseInt(horaSeparada[1]) );
+        var horarioAgendado = new Date(parseInt(arrayDate[0]), parseInt(arrayDate[1]) - 1, parseInt(arrayDate[2]), parseInt(horaSeparada[0]), parseInt(horaSeparada[1]) );
 
         
         const jsonBody = {

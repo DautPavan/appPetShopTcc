@@ -136,14 +136,8 @@ function RegistrarUsuario() {
 
                setItems3(t);
 
-               console.log(response.data)
-               console.log(items3)
-               console.log(items2)
-
            })
            .catch(error => {
-            console.log(error)
-            console.log(error.response.status)
                 setError("");
                 setModalVisible(false);
                 setError("Houve um erro: " + error.response.status)
@@ -212,6 +206,19 @@ function RegistrarUsuario() {
                         zIndex={3000}
                         zIndexInverse={1000}
                         style={styles.input}
+                        placeholder="Selecione a Raça"
+                        open={open3}
+                        value={value3}
+                        items={items3}
+                        setOpen={setOpen3}
+                        setValue={setValue3}
+                        setItems={setItems3}
+                    />
+
+                    <DropDownPicker
+                        zIndex={2000}
+                        zIndexInverse={2000}
+                        style={styles.input}
                         placeholder="Selecione o Sexo"
                         open={open}
                         value={value}
@@ -222,9 +229,9 @@ function RegistrarUsuario() {
                     />
 
                     <DropDownPicker
-                        zIndex={2000}
-                        zIndexInverse={2000}
-                        style={styles.input}
+                        zIndex={1000}
+                        zIndexInverse={3000}
+                        style={styles.input2}
                         placeholder="Selecione o Porte"
                         open={open2}
                         value={value2}
@@ -234,18 +241,7 @@ function RegistrarUsuario() {
                         setItems={setItems2}
                     />
 
-                    <DropDownPicker
-                        zIndex={1000}
-                        zIndexInverse={3000}
-                        style={styles.input}
-                        placeholder="Selecione a Raça"
-                        open={open3}
-                        value={value3}
-                        items={items3}
-                        setOpen={setOpen3}
-                        setValue={setValue3}
-                        setItems={setItems3}
-                    />
+                    
                     <Text style={styles.titleAlert}>{error}</Text>
 
                     <RectButton style={styles.button} onPress={handleNavigateBack}>
