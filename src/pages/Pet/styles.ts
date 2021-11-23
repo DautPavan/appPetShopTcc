@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     },
 
     profile: {
+      width: '100%',
       flexDirection: 'row',
       alignItems: 'center',
       padding: 24
@@ -173,6 +174,12 @@ const styles = StyleSheet.create({
     modalText: {
       marginBottom: 15,
       textAlign: "center"
+    },
+    remover: {
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+      flex: 1,
+      margin: 0,
     }
 
   });

@@ -136,7 +136,7 @@ function RegistrarUsuario() {
                         <Icon 
                             name="arrow-left" 
                             size={20} 
-                            color="#34cb79"
+                            color="#000"
                         />
                     </TouchableOpacity>
                 </View>

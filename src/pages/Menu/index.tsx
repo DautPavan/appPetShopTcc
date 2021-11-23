@@ -72,7 +72,7 @@ function Menu() {
                     <Icon 
                         name="arrow-left" 
                         size={20} 
-                        color="#34cb79"
+                        color="#000"
                     />
                 </TouchableOpacity>
 
@@ -93,7 +93,7 @@ function Menu() {
                         <Icon 
                             name="clock" 
                             size={42} 
-                            color="#34cb79"
+                            color="#ffd364"
                         />
                         <Text style={styles.itemTitle}>Agendar</Text>
                     </TouchableOpacity>
@@ -103,7 +103,7 @@ function Menu() {
                         <MaterialCommunityIcons 
                             name="dog" 
                             size={42} 
-                            color="#34cb79"
+                            color="#ffd364"
                         />
                         <Text style={styles.itemTitle}>Pet</Text>
                     </TouchableOpacity>

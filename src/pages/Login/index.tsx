@@ -89,83 +89,83 @@ function Login() {
     }, [navigation]);
 
     return (
-        <>
-        <ImageBackground 
-            source={image} 
-            style={styles.container}
-            resizeMode="contain"
-            imageStyle={{width: 274, height: 368 }}>
+        <View style={styles.test}>
+            <ImageBackground 
+                source={image} 
+                style={styles.container}
+                resizeMode="contain"
+                imageStyle={{width: 274, height: 368 }}>
 
-            <View style={styles.main}>
-                <Text style={styles.title}>PetShop</Text>
-                <Text style={styles.description}>Bem-vindo ao app de agendamento do nosso petshop.</Text>
-            </View>
-
-            <View style={styles.footer}>
-                <TextInput 
-                    style={styles.input}
-                    placeholder="Digite seu login"
-                    value={login}
-                    autoCorrect={false}
-                    onChangeText={setLogin}
-                >
-
-                </TextInput>
-                <TextInput 
-                    style={styles.input}
-                    secureTextEntry={true}
-                    placeholder="Digite seu senha"
-                    value={senha}
-                    autoCorrect={false}
-                    onChangeText={setSenha}
-                >
-
-                </TextInput>
-
-                <Text style={styles.titleAlert}>{error}</Text>
-
-                <RectButton style={styles.button} onPress={handleNavigateBack}>
-                    <View style={styles.buttonIcon}>                        
-                        <Text>
-                            <Icon 
-                                name="arrow-right" 
-                                color="#FFF" 
-                                size={24}
-                            />
-                        </Text>
-                    </View>
-                    <Text style={styles.buttonText}>Entrar</Text>
-                </RectButton>
-
-                <Text
-                    style={styles.titleRegister}
-                    onPress={registrarUsuario}>
-                    Registrar - se
-                </Text>
-
-            </View>
-        </ImageBackground>
-
-        <View>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Carregando</Text>
-                        <Image source={require('./../../assets/loading.gif')}/>
-                        
-                    </View>
+                <View style={styles.main}>
+                    <Text style={styles.title}>PetShop</Text>
+                    <Text style={styles.description}>Bem-vindo ao app de agendamento do nosso petshop.</Text>
                 </View>
-            </Modal>
-        </View>
 
-        </>
+                <View style={styles.footer}>
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Digite seu login"
+                        value={login}
+                        autoCorrect={false}
+                        onChangeText={setLogin}
+                    >
+
+                    </TextInput>
+                    <TextInput 
+                        style={styles.input}
+                        secureTextEntry={true}
+                        placeholder="Digite seu senha"
+                        value={senha}
+                        autoCorrect={false}
+                        onChangeText={setSenha}
+                    >
+
+                    </TextInput>
+
+                    <Text style={styles.titleAlert}>{error}</Text>
+
+                    <RectButton style={styles.button} onPress={handleNavigateBack}>
+                        <View style={styles.buttonIcon}>                        
+                            <Text>
+                                <Icon 
+                                    name="arrow-right" 
+                                    color="#FFF" 
+                                    size={24}
+                                />
+                            </Text>
+                        </View>
+                        <Text style={styles.buttonText}>Entrar</Text>
+                    </RectButton>
+
+                    <Text
+                        style={styles.titleRegister}
+                        onPress={registrarUsuario}>
+                        Registrar - se
+                    </Text>
+
+                </View>
+            </ImageBackground>
+
+            <View>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Carregando</Text>
+                            <Image source={require('./../../assets/loading.gif')}/>
+                            
+                        </View>
+                    </View>
+                </Modal>
+            </View>
+
+        </View>
     );
 
 }

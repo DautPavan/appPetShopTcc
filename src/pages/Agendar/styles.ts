@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
       height: 60,
       backgroundColor: '#FFF',
       borderRadius: 10,
-      marginBottom: 200,
+      marginBottom: 25,
       paddingHorizontal: 24,
       fontSize: 16,
     },
@@ -182,6 +182,36 @@ const styles = StyleSheet.create({
     modalText: {
       marginBottom: 15,
       textAlign: "center"
+    },
+
+    itemsContainer: {
+      flexDirection: 'row',
+      marginTop: 16,
+      marginBottom: 32,
+    },
+    itemTitle: {
+      fontFamily: 'Roboto_400Regular',
+      textAlign: 'center',
+      fontSize: 15,
+      padding:5,
+    },
+    item: {
+      backgroundColor: '#fff',
+      borderWidth: 2,
+      borderColor: '#eee',
+      height: 120,
+      borderRadius: 8,
+      paddingHorizontal: 16,
+      paddingTop: 20,
+      paddingBottom: 16,
+      marginRight: 8,
+      alignItems: 'center',
+      justifyContent: 'space-between',  
+      textAlign: 'center',
+      flexDirection: 'row',
+    },
+    GroupImgitem:{
+
     }
 
   });

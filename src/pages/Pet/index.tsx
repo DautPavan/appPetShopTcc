@@ -49,6 +49,41 @@ function RegistrarUsuario() {
         navigation.navigate("AdicionarPet");
     }
 
+    const deletar = (id: string) => {
+        setModalVisible(true); 
+
+        api.delete(`Animal/Deletar/${id}`,)
+        .then(response => {
+            setError("");
+            setModalVisible(false);
+
+            setModalVisible(true);
+            setPets([])        
+          
+            api.get('Animal/Buscar',)
+               .then(response => {
+                   setError("");
+                   setModalVisible(false);
+                   setPets(response.data);    
+    
+               })
+               .catch(error => {
+                    setError("");
+                    setModalVisible(false);
+                    setError("Houve um erro: " + error.response.status)
+                    toMenu();                
+               });
+
+        })
+        .catch(error => {
+            setError("");
+            setModalVisible(false);
+            setError("Houve um erro: " + error.response.status)
+            toMenu();                
+        });
+
+    }
+
     useEffect(() => {
         setModalVisible(true);
         setPets([])        
@@ -57,14 +92,10 @@ function RegistrarUsuario() {
            .then(response => {
                setError("");
                setModalVisible(false);
-               setPets(response.data)
-               console.log(response.data)
-
+               setPets(response.data);
 
            })
            .catch(error => {
-            console.log(error)
-            console.log(error.response.status)
                 setError("");
                 setModalVisible(false);
                 setError("Houve um erro: " + error.response.status)
@@ -85,8 +116,6 @@ function RegistrarUsuario() {
                    setPets(response.data) 
                })
                .catch(error => {
-                console.log(error)
-                console.log(error.response.status)
                     setError("");
                     setModalVisible(false);
                     setError("Houve um erro: " + error.response.status)
@@ -112,7 +141,7 @@ function RegistrarUsuario() {
                         <Icon 
                             name="arrow-left" 
                             size={20} 
-                            color="#34cb79"
+                            color="#000"
                         />
                     </TouchableOpacity>
                 </View>
@@ -129,7 +158,7 @@ function RegistrarUsuario() {
                                 <MaterialCommunityIcons 
                                     name="dog" 
                                     size={42} 
-                                    color="#34cb79"
+                                    color="#ffd364"
                                 />
 
                                 <View style={styles.profileInfo}>
@@ -144,6 +173,15 @@ function RegistrarUsuario() {
                                     </Text>
                                 </View>
 
+                                <View style={styles.remover}>
+                                    <TouchableOpacity onPress={() => {deletar(el["Id"])}}>
+                                        <MaterialCommunityIcons 
+                                        name="delete" 
+                                        size={35} 
+                                        color="#d12c38"
+                                        />
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                         </View>
                         );

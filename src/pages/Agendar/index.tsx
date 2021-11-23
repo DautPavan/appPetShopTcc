@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ImageBackground, Text, View, TextInput, TouchableOpacity, ScrollView, Modal, LogBox  } from 'react-native';
+import { Image, ImageBackground, Text, View, TextInput, TouchableOpacity, ScrollView, Modal, LogBox, Alert  } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler'
 import { Feather as Icon } from '@expo/vector-icons'
 import styles from './styles';
@@ -11,6 +11,7 @@ import { RootStackParamList } from '../rootStackNavigator';
 import api from '../../services/api';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function RegistrarUsuario() {
     LogBox.ignoreAllLogs();
@@ -19,6 +20,8 @@ function RegistrarUsuario() {
     var apoio = new Date();
 
     const [date, setDate] = useState(apoio.getFullYear() + "-" + (apoio.getMonth() + 1) + '-' + apoio.getDate());
+
+    const [horarios, setHorarios] = useState([]);
 
     const onChange = (event: any, selectedDate: any) => {
         const currentDate = selectedDate || date;
@@ -61,12 +64,10 @@ function RegistrarUsuario() {
 
     type homeScreenProp = StackNavigationProp<RootStackParamList, 'Agendar'>;
     const navigation = useNavigation<homeScreenProp>();
-
-
  
     const handleNavigateBack = async () => {
         setError("");
-        setModalVisible(true);        
+        setModalVisible(true);
        
         console.log(date)
 
@@ -89,7 +90,6 @@ function RegistrarUsuario() {
             return;
         }          
         
-        //if (date.)
 
         var arrayDate = date.toString().split('-');
         var hora = items2.find(el => el.value == value2)
@@ -108,7 +108,7 @@ function RegistrarUsuario() {
             AnimalId : parseInt(value3),
             ServicoId : parseInt(value),
         }
-console.log(jsonBody)
+
         api.post('Agenda/Create', jsonBody)
            .then(response => {
                setError("");
@@ -134,29 +134,29 @@ console.log(jsonBody)
         setModalVisible(true);       
       
         api.get('Servico/BuscarTodos',)
-           .then(response => {
-                setError("");
-                setModalVisible(false);
-                const t:any = []; 
+        .then(response => {
+            setError("");
+            setModalVisible(false);
+            const t:any = []; 
 
-                response.data.map((el: any) => {
-                    const obj = {label: el["Descricao"], value: el["Id"]}
+            response.data.map((el: any) => {
+                const obj = {label: el["Descricao"], value: el["Id"]}
 
-                    t.push(obj);
-                });
-                console.log(response.data)
+                t.push(obj);
+            });
+            console.log(response.data)
 
-                setItems(t);
+            setItems(t);
 
-           })
-           .catch(error => {
-            console.log(error)
-            console.log(error.response.status)
-                setError("");
-                setModalVisible(false);
-                setError("Houve um erro: " + error.response.status)
-                toBack();                
-           });           
+        })
+        .catch(error => {
+        console.log(error)
+        console.log(error.response.status)
+            setError("");
+            setModalVisible(false);
+            setError("Houve um erro: " + error.response.status)
+            toBack();                
+        });
 
     }, [])
 
@@ -175,19 +175,37 @@ console.log(jsonBody)
 
                     t.push(obj);
                 });
-                console.log(response.data)
 
                 setItems3(t);
 
            })
            .catch(error => {
-            console.log(error)
-            console.log(error.response.status)
                 setError("");
                 setModalVisible(false);
                 setError("Houve um erro: " + error.response.status)
                 toBack();                
            });           
+
+    }, [])
+
+    useEffect(() => {
+        setHorarios([]);
+        setModalVisible(true);
+
+        api.get('Agenda/ListaMobiPessoa')
+        .then(response => {
+            console.log("aqui")
+            console.log(response.data)
+            setHorarios(response.data);
+            setError("");
+            setModalVisible(false);
+        })
+        .catch(error => {
+             setError("");
+             setModalVisible(false);
+             setError("Houve um erro: " + error.response.status)
+             
+        });           
 
     }, [])
 
@@ -205,7 +223,7 @@ console.log(jsonBody)
                         <Icon 
                             name="arrow-left" 
                             size={20} 
-                            color="#34cb79"
+                            color="#000"
                         />
                     </TouchableOpacity>
                 </View>
@@ -292,6 +310,41 @@ console.log(jsonBody)
                         <Text style={styles.buttonText}>Agendar</Text>
                     </RectButton>
                 </View>
+
+                <View style={styles.itemsContainer}>
+                    <ScrollView 
+                        horizontal 
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={{paddingHorizontal: 20}}>
+
+                        {
+                            horarios.map((el, index) => {
+                                return (
+                                    <TouchableOpacity style={styles.item}>
+                                        <View style={styles.GroupImgitem}>
+                                            <Icon 
+                                                name="clock" 
+                                                size={42} 
+                                                color="#ffd364"
+                                            />
+                                        </View>
+                                        <View>
+                                            <Text style={styles.itemTitle}>
+                                                {el["HoraAgendada"].toString().split("T")[0].split("-")[2]}
+                                                /{el["HoraAgendada"].toString().split("T")[0].split("-")[1]}
+                                                /{el["HoraAgendada"].toString().split("T")[0].split("-")[0]}
+                                            </Text>
+                                            <Text style={styles.itemTitle}>{el["HoraAgendada"].toString().split("T")[1].replace("Z","")}</Text>
+                                            <Text style={styles.itemTitle}>{el["Animal"]["Nome"]}-{el["Dono"]["Nome"]}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+
+                    </ScrollView>
+                </View>
+
             </ScrollView>
         </ImageBackground>
 
