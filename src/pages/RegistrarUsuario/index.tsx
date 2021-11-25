@@ -142,7 +142,7 @@ function RegistrarUsuario() {
                 </View>
 
                 <View style={styles.main}>
-                    <Text style={styles.title}>Regesitro de Usuario</Text>
+                    <Text style={styles.title}>Registrar Usuário</Text>
                 </View>
 
                 <View style={styles.footer}>

@@ -211,7 +211,15 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
     },
     GroupImgitem:{
-
+      alignItems: 'center'
+    },
+    itemTitle2: {
+      fontFamily: 'Roboto_400Regular',
+      textAlign: 'left',
+      fontSize: 15,
+      padding:5,
+    },
+    imgRelogio: {
     }
 
   });

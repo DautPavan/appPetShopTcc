@@ -3,7 +3,6 @@ import { Image, ImageBackground, Text, View, TextInput, TouchableOpacity, Scroll
 import { RectButton } from 'react-native-gesture-handler'
 import { Feather as Icon } from '@expo/vector-icons'
 import styles from './styles';
-import image from '../../assets/logo.png';
 import background from '../../assets/home-background.png';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -152,7 +151,7 @@ function RegistrarUsuario() {
     return (
         <>
         <ImageBackground 
-            source={image} 
+            source={background} 
             style={styles.container}
             resizeMode="contain"
             imageStyle={{width: 274, height: 368 }}>

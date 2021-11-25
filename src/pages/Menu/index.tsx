@@ -77,7 +77,7 @@ function Menu() {
                 </TouchableOpacity>
 
                 <Text style={styles.title}>
-                    Bem vindo {value2}.
+                    Bem vindo, {value2}.
                 </Text>
 
                 <View style={styles.mapContainer}>

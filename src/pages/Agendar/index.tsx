@@ -270,7 +270,7 @@ function RegistrarUsuario() {
                         zIndex={2000}
                         zIndexInverse={2000}
                         style={styles.input2}
-                        placeholder="Selecione um serviço"
+                        placeholder="Selecione um Serviço"
                         open={open}
                         value={value}
                         items={items}
@@ -283,7 +283,7 @@ function RegistrarUsuario() {
                         zIndex={1000}
                         zIndexInverse={3000}
                         style={styles.input}
-                        placeholder="Selecione o Horario"
+                        placeholder="Selecione o Horário"
                         open={open2}
                         value={value2}
                         items={items2}
@@ -323,19 +323,25 @@ function RegistrarUsuario() {
                                     <TouchableOpacity style={styles.item}>
                                         <View style={styles.GroupImgitem}>
                                             <Icon 
+                                                style={styles.imgRelogio}
                                                 name="clock" 
                                                 size={42} 
                                                 color="#ffd364"
                                             />
+                                            <Text style={styles.itemTitle}>
+                                                {
+                                                    el["Status"] == 0 ? "Espera" : el["Status"] == 1 ? "Iniciado" : "Concluído" 
+                                                }
+                                            </Text>
                                         </View>
                                         <View>
-                                            <Text style={styles.itemTitle}>
+                                            <Text style={styles.itemTitle2}>
                                                 {el["HoraAgendada"].toString().split("T")[0].split("-")[2]}
                                                 /{el["HoraAgendada"].toString().split("T")[0].split("-")[1]}
                                                 /{el["HoraAgendada"].toString().split("T")[0].split("-")[0]}
                                             </Text>
-                                            <Text style={styles.itemTitle}>{el["HoraAgendada"].toString().split("T")[1].replace("Z","")}</Text>
-                                            <Text style={styles.itemTitle}>{el["Animal"]["Nome"]}-{el["Dono"]["Nome"]}</Text>
+                                            <Text style={styles.itemTitle2}>{el["HoraAgendada"].toString().split("T")[1].replace("Z","")}</Text>
+                                            <Text style={styles.itemTitle2}>{el["Animal"]["Nome"]}-{el["Dono"]["Nome"]}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 )
